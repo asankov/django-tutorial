@@ -15,6 +15,8 @@ dist/
 downloads/
 eggs/
 .eggs/
+.idea
+db.sqlite3
 lib/
 lib64/
 parts/
