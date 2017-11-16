@@ -3,7 +3,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-from .Person import Person
+from .person import Person
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)

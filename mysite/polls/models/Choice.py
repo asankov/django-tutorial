@@ -1,6 +1,6 @@
 from django.db import models
 
-from .Question import Question
+from .question import Question
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
