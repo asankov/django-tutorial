@@ -3,12 +3,29 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+class Person(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+    def save(self, *args, **kwargs):
+        print("Saving {}".format(str(self)))
+        super(Person, self).save(*args, **kwargs)
+
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    people = models.ForeignKey(Person, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.question_text
+
+    def save(self, *args, **kwargs):
+        print("Saving {}".format(str(self)))
+        super(Question, self).save(*args, **kwargs)
+
 
     def was_published_recently(self):
         now = timezone.now()
@@ -24,3 +41,7 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+    def save(self, *args, **kwargs):
+        print("Saving {}".format(str(self)))
+        super(Choice, self).save(*args, **kwargs)
